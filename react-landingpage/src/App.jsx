@@ -1,9 +1,19 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./App.css";
 import { FaFacebookF, FaInstagram, FaLinkedin } from "react-icons/fa";
+
+import Navbar from "./Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Contact from "./pages/Contact";
+import Projects from "./pages/Projects";
+import SignIn from "./pages/SignIn";
+
 
 const App = () => {
   const images = [
@@ -26,14 +36,24 @@ const App = () => {
   };
 
   return (
+    
     <div className="landing-container">
       <header className="header">
         <img src="/images/logo.png" alt="Aura Interiors Logo" className="logo-image" style={{width: "120px", height: "120px"}} />
-        <h1 className="logo">Aura Interiors</h1>
         <p className="tagline" style={{ fontSize: '15px'}}><i>Transforming Spaces, One Interior at a Time! ♥</i></p>
       </header>
-
-      {/* ADD NAVBAR HERE */}
+    
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/signin" element={<SignIn />} />
+      </Routes>
+    </Router>
 
       <div className="slider-wrapper">
         <Slider {...sliderSettings}>
@@ -45,6 +65,7 @@ const App = () => {
           ))}
         </Slider>
       </div>
+      
 
       <footer className="footer">
         <p style={{ fontSize: '15px'}}><i>© 2025 Aura Interiors. All Rights Reserved.</i></p>
@@ -55,6 +76,7 @@ const App = () => {
         </div>
       </footer>
     </div>
+    
   );
 };
 
